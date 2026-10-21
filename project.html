@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Project details by Ian Liggett.">
+  <title>Project | Ian Liggett</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Ian Liggett</a>
+    <nav aria-label="Main navigation"><a href="index.html#projects">Projects</a><a href="index.html#contact">Contact</a></nav>
+  </header>
+
+  <main class="page-shell" id="project-page" aria-live="polite"></main>
+
+  <footer class="site-footer"><span>Ian Liggett</span><a href="index.html#projects">All projects</a></footer>
+
+  <!-- Project details live here as ordinary, readable HTML. Add media with another figure in .media-gallery. -->
+  <template id="terrain-generator">
+    <article>
+      <section class="project-hero">
+        <p class="breadcrumbs"><a href="index.html">Home</a> / Projects</p>
+        <p class="eyebrow">Project</p>
+        <h1>Terrain Generator</h1>
+        <p class="project-lede">A browser based terrain editor for shaping landscapes with rivers, lakes, and simple erosion.</p>
+        <div class="project-actions">
+          <a class="button-link primary" href="https://terrain-website.onrender.com/" target="_blank" rel="noopener noreferrer">Visit live demo &nearr;</a>
+          <a class="button-link" href="index.html#projects">All projects</a>
+        </div>
+      </section>
+      <section class="project-media" aria-label="Terrain Generator media">
+        <figure><img src="assets/terrain_website.png" alt="Terrain Generator web app showing a generated landscape"><figcaption>Terrain Generator web app</figcaption></figure>
+        <div class="media-gallery">
+          <!-- Add more figures here for screenshots or videos. -->
+        </div>
+      </section>
+      <section class="project-content">
+        <div>
+          <h2>About the project</h2>
+          <div class="project-description">
+            <p>A terrain generator with rivers, lakes, and simple erosion, using a heightmap. Implemented with Django and SQLite. Terrain layers and settings are saved.</p>
+            <h3>Demo account</h3>
+            <p>Username: demo<br>Password: demo</p>
+            <p>The hosted demo may take up to a minute to start.</p>
+          </div>
+        </div>
+        <aside class="project-aside"><h2>Built with</h2><p>Django &middot; SQLite &middot; Heightmaps</p></aside>
+      </section>
+      <a class="back-projects" href="index.html#projects">&larr; Back to all projects</a>
+    </article>
+  </template>
+
+  <template id="voxel-terrain">
+    <article>
+      <section class="project-hero">
+        <p class="breadcrumbs"><a href="index.html">Home</a> / Projects</p>
+        <p class="eyebrow">Project</p>
+        <h1>Voxel Terrain</h1>
+        <p class="project-lede">Chunked procedural terrain in Roblox Studio, generated with layered Perlin noise and binary greedy meshing.</p>
+        <div class="project-actions"><a class="button-link" href="index.html#projects">All projects</a></div>
+      </section>
+      <section class="project-media" aria-label="Voxel Terrain media">
+        <figure><img src="assets/voxel_terrain.png" alt="Voxel Terrain project screenshot"><figcaption>Voxel Terrain in Roblox Studio</figcaption></figure>
+        <div class="media-gallery">
+          <!-- Add more figures here for screenshots or videos. -->
+        </div>
+      </section>
+      <section class="project-content">
+        <div>
+          <h2>About the project</h2>
+          <div class="project-description">
+            <p>Voxel terrain implemented in Roblox Studio, chunked and generated using Perlin layers. Chunks are multithreaded and use binary greedy meshing to reduce face count.</p>
+          </div>
+        </div>
+        <aside class="project-aside"><h2>Built with</h2><p>Roblox Studio &middot; Procedural generation</p></aside>
+      </section>
+      <a class="back-projects" href="index.html#projects">&larr; Back to all projects</a>
+    </article>
+  </template>
+
+  <template id="boids-simulation">
+    <article>
+      <section class="project-hero">
+        <p class="breadcrumbs"><a href="index.html">Home</a> / Projects</p>
+        <p class="eyebrow">Project</p>
+        <div class="title-container">
+          <h1>Boids Simulation</h1>
+          <a class="button-link src-link" href="https://github.com/IanLiggett/roblox-boids" target="_blank" rel="noopener noreferrer" aria-label="View source code on GitHub (opens in a new tab)">Source Code</a>
+        </div>
+        <p class="project-lede">A flocking simulation with obstacle avoidance, parallel updates, network replication, and multiple levels of detail.</p>
+        <div class="project-actions"><a class="button-link" href="index.html#projects">All projects</a></div>
+      </section>
+      <section class="project-media" aria-label="Boids Simulation media">
+        <figure>
+          <video controls preload="none" aria-label="Boids Simulation video demo" poster="assets/boids_demo_poster.png">
+            <source src="assets/boids_demo.mp4" type="video/mp4">
+            Your browser does not support embedded video. <a href="assets/boids_demo.mp4">Open the video file</a>.
+          </video>
+          <figcaption>Boids Simulation demo</figcaption>
+        </figure>
+        <div class="media-gallery">
+          <!-- Add figures here when project screenshots or videos are available. -->
+        </div>
+      </section>
+      <section class="project-content">
+        <div>
+          <h2>About the project</h2>
+          <div class="project-description">
+            <p>A boids simulation implemented in Roblox Studio, including obstacle avoidance, client simulations, and server simulations which are replicated to all clients. Clients run a simulation simultaneously, using replication data from the server to course correct individual boids. Unfortunately since it's Roblox, the entire simulation is run on the cpu.</p>
+            <p>The boids use sparse chunking to partition them, which are used by jobs that get scheduled to calculate updates in parallel. The simulation layer is separated from the rendering layer, so that the simulation can run at a different framerate than the rendering. Additionally, if a cell is particularly dense during a job, it will do a pass through the boids first to partition them into subcells, and then during that simulation step the boids will use aggregate subcell data instead of evaluating all the boid's in that dense cell near them. This drastically reduces dense cell update times in most cases, despite not improving the worst case of O(n^2)</p>
+            <p>There are 3 separate LOD systems, one for the simulation, one for the network replication, and one for the rendering. This means that a boid group far away from a client has very little effect on the client's performance, lessens the server's load dramatically if nobody is observing those boids, and allows for much larger swarms overall.</p>
+            <p>I've achieved a 20000 boid simulation running on my iphone 15 with no network or frame lag.</p>
+          </div>
+        </div>
+        <aside class="project-aside"><h2>Built with</h2><p>Roblox Studio &middot; Simulation &middot; Networking</p></aside>
+      </section>
+      <a class="back-projects" href="index.html#projects">&larr; Back to all projects</a>
+    </article>
+  </template>
+
+  <script src="project-page.js"></script>
+</body>
+</html>
