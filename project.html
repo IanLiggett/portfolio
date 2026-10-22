@@ -38,15 +38,28 @@
       </section>
       <section class="project-content">
         <div>
-          <h2>About the project</h2>
+          <h2>Overview</h2>
           <div class="project-description">
-            <p>A terrain generator with rivers, lakes, and simple erosion, using a heightmap. Implemented with Django and SQLite. Terrain layers and settings are saved.</p>
-            <h3>Demo account</h3>
+            <p>A browser-based terrain editor for generating and shaping landscapes with rivers, lakes, and erosion. Built with Django, SQLite, and JavaScript; terrain layers and settings are saved to a database.</p>
+          </div>
+
+          <h2>Terrain generation</h2>
+          <div class="project-description">
+            <p>Heightmaps use octave noise with ridge shaping and domain warping, where one noise field modifies another.</p>
+          </div>
+
+          <h2>Water flow</h2>
+          <div class="project-description">
+            <p>A priority flood-fill locates depressions for lakes and rivers. Reversing the traversal determines water flow across the terrain.</p>
+          </div>
+
+          <h2>Demo access</h2>
+          <div class="project-description">
             <p>Username: demo<br>Password: demo</p>
             <p>The hosted demo may take up to a minute to start.</p>
           </div>
         </div>
-        <aside class="project-aside"><h2>Built with</h2><p>Django &middot; SQLite &middot; Heightmaps</p></aside>
+        <aside class="project-aside"><h2>Built with</h2><p>Django &middot; SQLite &middot; Heightmaps &middot; JavaScript</p></aside>
       </section>
       <a class="back-projects" href="index.html#projects">&larr; Back to all projects</a>
     </article>
@@ -59,19 +72,45 @@
         <p class="eyebrow">Project</p>
         <h1>Voxel Terrain</h1>
         <p class="project-lede">Chunked procedural terrain in Roblox Studio, generated with layered Perlin noise and binary greedy meshing.</p>
-        <div class="project-actions"><a class="button-link" href="index.html#projects">All projects</a></div>
+        <div class="project-actions">
+          <span class="button-link is-placeholder" aria-disabled="true">Source Code (coming soon)</span>
+          <span class="button-link is-placeholder" aria-disabled="true">Live demo (coming soon)</span>
+          <a class="button-link" href="index.html#projects">All projects</a>
+        </div>
       </section>
       <section class="project-media" aria-label="Voxel Terrain media">
-        <figure><img src="assets/voxel_terrain.png" alt="Voxel Terrain project screenshot"><figcaption>Voxel Terrain in Roblox Studio</figcaption></figure>
+        <figure>
+          <video controls preload="none" aria-label="Voxel Terrain generation video" poster="assets/voxel_terrain_poster.png">
+            <source src="assets/voxel_terrain_generation.mp4" type="video/mp4">
+            Your browser does not support embedded video. <a href="assets/voxel_terrain_generation.mp4">Open the video file</a>.
+          </video>
+          <figcaption>Primary project demo slot</figcaption>
+        </figure>
         <div class="media-gallery">
-          <!-- Add more figures here for screenshots or videos. -->
+          <figure><img src="assets/greedy_mesh_showcase.png" alt="Voxel terrain with bright green outlines showing visible voxel faces combined by greedy meshing"><figcaption>Green outlines show exposed voxel faces combined by greedy meshing. Hidden faces are omitted from the rendered surface.</figcaption></figure>
         </div>
       </section>
       <section class="project-content">
         <div>
-          <h2>About the project</h2>
+          <h2>Overview</h2>
           <div class="project-description">
-            <p>Voxel terrain implemented in Roblox Studio, chunked and generated using Perlin layers. Chunks are multithreaded and use binary greedy meshing to reduce face count.</p>
+            <p>A chunked procedural terrain system in Roblox Studio, built from voxels generated with layered Perlin noise. The showcase shows the voxel faces exposed to air: hidden faces are not rendered, and binary greedy meshing combines visible faces to reduce the rendered geometry.</p>
+          </div>
+
+          <h2>Chunk handling</h2>
+          <div class="project-description">
+            <p>Chunks can be loaded and unloaded as the world expands. The terrain is voxel-based, but its current heightmap approach does not generate filled voxels above the heightmap. Extending it to do so would be needed for fully volumetric terrain in every direction.</p>
+            <p>To handle neighbors generated at different times, the system stores chunk-boundary occupancy in flat 2D buffers so face visibility can still be checked when adjacent chunks appear later.</p>
+          </div>
+
+          <h2>Data and meshing</h2>
+          <div class="project-description">
+            <p>Material data is stored in a flat 3D buffer; a smaller occupancy buffer packs voxel occupancy into 32-bit integers. Bitwise operations check visibility across voxel rows, so faces hidden against neighboring voxels can be omitted. Binary greedy meshing combines the remaining exposed faces while adding little computation.</p>
+          </div>
+
+          <h2>Tradeoffs</h2>
+          <div class="project-description">
+            <p>Roblox’s instance-based rendering cannot merge faces with different materials into one instance. The chunk is therefore meshed once for each material it contains.</p>
           </div>
         </div>
         <aside class="project-aside"><h2>Built with</h2><p>Roblox Studio &middot; Procedural generation</p></aside>
@@ -94,24 +133,46 @@
       </section>
       <section class="project-media" aria-label="Boids Simulation media">
         <figure>
-          <video controls preload="none" aria-label="Boids Simulation video demo" poster="assets/boids_demo_poster.png">
-            <source src="assets/boids_demo.mp4" type="video/mp4">
-            Your browser does not support embedded video. <a href="assets/boids_demo.mp4">Open the video file</a>.
+          <video controls preload="none" aria-label="Boids obstacle avoidance video" poster="assets/boids_obstacle_demo_poster.png">
+            <source src="assets/boids_demo_obstacles.mp4" type="video/mp4">
+            Your browser does not support embedded video. <a href="assets/boids_demo_obstacles.mp4">Open the video file</a>.
           </video>
-          <figcaption>Boids Simulation demo</figcaption>
+          <figcaption>Primary project demo slot</figcaption>
         </figure>
         <div class="media-gallery">
-          <!-- Add figures here when project screenshots or videos are available. -->
+          <figure>
+            <video controls preload="none" aria-label="Boids Simulation video demo" poster="assets/boids_demo_poster.png">
+              <source src="assets/boids_demo.mp4" type="video/mp4">
+              Your browser does not support embedded video. <a href="assets/boids_demo.mp4">Open the video file</a>.
+            </video>
+            <figcaption>Current demo (temporary)</figcaption>
+          </figure>
         </div>
       </section>
       <section class="project-content">
         <div>
-          <h2>About the project</h2>
+          <h2>Overview</h2>
           <div class="project-description">
-            <p>A boids simulation implemented in Roblox Studio, including obstacle avoidance, client simulations, and server simulations which are replicated to all clients. Clients run a simulation simultaneously, using replication data from the server to course correct individual boids. Unfortunately since it's Roblox, the entire simulation is run on the cpu.</p>
-            <p>The boids use sparse chunking to partition them, which are used by jobs that get scheduled to calculate updates in parallel. The simulation layer is separated from the rendering layer, so that the simulation can run at a different framerate than the rendering. Additionally, if a cell is particularly dense during a job, it will do a pass through the boids first to partition them into subcells, and then during that simulation step the boids will use aggregate subcell data instead of evaluating all the boid's in that dense cell near them. This drastically reduces dense cell update times in most cases, despite not improving the worst case of O(n^2)</p>
-            <p>There are 3 separate LOD systems, one for the simulation, one for the network replication, and one for the rendering. This means that a boid group far away from a client has very little effect on the client's performance, lessens the server's load dramatically if nobody is observing those boids, and allows for much larger swarms overall.</p>
-            <p>I've achieved a 20000 boid simulation running on my iphone 15 with no network or frame lag.</p>
+            <p>A Roblox Studio flocking simulation with obstacle avoidance, server and client simulation, and replicated state. Clients simulate boids locally and use server updates to correct their motion.</p>
+          </div>
+
+          <h2>Technical approach</h2>
+          <div class="project-description">
+            <p>Sparse spatial chunks partition the boids into groups that parallel jobs can update. The simulation runs separately from rendering, so each can use its own update rate.</p>
+            <p>When a chunk is especially dense, a job subdivides it and aggregates subcell data. Boids can use those aggregates instead of evaluating every nearby boid, reducing update times in typical dense cases.</p>
+            <p>Three LOD systems independently control simulation, network replication, and rendering. Distant groups can therefore use fewer client and server resources, allowing larger swarms overall.</p>
+          </div>
+
+          <h2>Data structures</h2>
+          <div class="project-description">
+            <p>Boids move between chunks frequently, so I built a buffer-backed page system to store them. Lazy deletion keeps boids stable in their pages and avoids frequent registry updates. Bit-packed dead-slot buffers help find available slots for incoming or moving boids.</p>
+            <p>Small pages can be removed from mostly inactive chunks to limit memory use. Boid data is quantized in buffers to reduce the amount copied across Actor boundaries when parallel jobs run.</p>
+          </div>
+
+          <h2>Results and tradeoffs</h2>
+          <div class="project-description">
+            <p>The project has demonstrated a 20,000-boid simulation on an iPhone 15.</p>
+            <p>Dense-chunk subdivision improves typical update cost, but the worst case remains O(n²). The simulation runs on the CPU.</p>
           </div>
         </div>
         <aside class="project-aside"><h2>Built with</h2><p>Roblox Studio &middot; Simulation &middot; Networking</p></aside>

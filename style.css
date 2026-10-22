@@ -335,6 +335,18 @@ h1 {
   border-color: var(--accent);
 }
 
+.button-link.is-placeholder {
+  border-style: dashed;
+  background: transparent;
+  color: var(--muted);
+  cursor: default;
+}
+
+.demo-link.is-placeholder {
+  opacity: .75;
+  cursor: default;
+}
+
 .project-media {
   margin: 1rem 0 3.5rem;
 }
@@ -361,10 +373,15 @@ h1 {
 }
 
 .detail-media-placeholder {
-  min-height: 360px;
+  min-height: clamp(220px, 35vw, 380px);
+  aspect-ratio: 16 / 9;
   padding: 2rem;
   border: 1px solid var(--line);
   border-radius: 14px;
+}
+
+.media-gallery .detail-media-placeholder {
+  min-height: 0;
 }
 
 .detail-media-placeholder strong {
